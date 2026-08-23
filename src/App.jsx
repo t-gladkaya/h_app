@@ -1,10 +1,11 @@
 import './App.css'
+import Navigation from './components/Navigation'
 
 function App() {
   return (
     <>
-      <div className="p-5">
-        <h2>Migraine Track</h2>
+      <div className="pb-5">
+        <Navigation />
       </div>
     </>
   )
