@@ -7,7 +7,7 @@ type NavigationProps = {
 
 export default function Navigation({ onAddMigraine }: NavigationProps) {
   return (
-    <header className="sticky top-0 z-10 overflow-hidden rounded-md text-slate-700 shadow-md [font-family:Inter,ui-sans-serif,system-ui,sans-serif] font-medium tracking-normal bg-white">
+    <header className="sticky top-0 z-10 overflow-hidden bg-white border-b border-slate-200 rounded-md text-slate-800 shadow-md font-medium tracking-normal">
       <ul className="flex w-full items-stretch">
         <li className="flex flex-1 justify-center items-center                                                                                                                                                                                                                                                                                                                                                                               p-2">
           <p className="rounded-md px-4 py-2 transition-colors">
@@ -15,7 +15,7 @@ export default function Navigation({ onAddMigraine }: NavigationProps) {
           </p>
           <AddMigraineButton onAdd={onAddMigraine}/>
         </li>
-        <li className="flex flex-1 justify-center p-2">
+        <li className="flex flex-1 justify-center p-2 bg-slate-50">
           <p className="rounded-md px-4 py-2 transition-colors">
             Statistics
           </p>

@@ -35,7 +35,7 @@ export const Modal = ({ onClose, onSubmit }: ModalProps) => {
       >
         <form className="relative" onSubmit={handleSubmit}>
           <button className="absolute top-0 right-0" type="button" onClick={onClose}>
-            <img className="w-6 h-6 hover:transform hover:scale-110 duration-300" src="/close vector.svg" alt="close" />
+            <img className="w-6 h-6 hover:transform hover:scale-110 duration-300 hover:cursor-pointer" src="/close vector.svg" alt="close" />
           </button>
           <h3 className="pr-8 text-xl font-bold mb-4">Add Migraine Data</h3>
 
@@ -53,7 +53,7 @@ export const Modal = ({ onClose, onSubmit }: ModalProps) => {
             </label>
           </div>
 
-          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
+          <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded hover:cursor-pointer" type="submit">
             Submit
           </button>
         </form>

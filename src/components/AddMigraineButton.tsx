@@ -16,7 +16,7 @@ export function AddMigraineButton({ onAdd }: AddMigraineButtonProps) {
 
   return (
     <>
-      <button className="flex items-center justify-center w-6 h-6 bg-white rounded-2xl hover:bg-purple-200 transition-colors hover:cursor-pointer" onClick={handleOpenModal}>
+      <button className="flex h-8 w-8 items-center justify-center hover:transform hover:scale-110 duration-300 rounded-full transition hover:cursor-pointer" onClick={handleOpenModal}>
         <img className="w-6 h-6" src="/plus.svg" alt="add migraine" />
       </button>
 
