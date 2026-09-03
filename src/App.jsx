@@ -1,26 +1,16 @@
 import './App.css'
-import { useState } from 'react'
 import Navigation from './components/Navigation'
 import { MainPage } from './pages/MainPage'
-import { getMigraines, saveMigraines } from './utils/localStorage'
+import { useMigraines } from './hooks/useMigraines'
 
 function App() {
-  const [migraines, setMigraines] = useState(getMigraines)
-
-  const handleAddMigraine = (data) => {
-    setMigraines((currentMigraines) => {
-      const updatedMigraines = [...currentMigraines, data];
-
-      saveMigraines(updatedMigraines);
-      return updatedMigraines;
-    })
-  }
+  const {migraines, addMigraine, deleteMigraine} = useMigraines()
 
   return (
     <>
       <div className="flex min-h-svh flex-col">
-        <Navigation onAddMigraine={handleAddMigraine} />
-        <MainPage migraines={migraines} />
+        <Navigation onAddMigraine={addMigraine} />
+        <MainPage migraines={migraines} onDeleteMigraine={deleteMigraine} />
       </div>
     </>
   )

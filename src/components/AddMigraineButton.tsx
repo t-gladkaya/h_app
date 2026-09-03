@@ -1,10 +1,10 @@
 import { useState } from "react"
 import { Modal } from "./Modal"
 import { AnimatePresence } from "framer-motion"
-import type { MigraineDataProps } from "../types/types"
+import type { Migraine } from "../types/migraine"
 
 type AddMigraineButtonProps = {
-  onAdd: (data: MigraineDataProps) => void;
+  onAdd: (data: Migraine) => void;
 }
 
 export function AddMigraineButton({ onAdd }: AddMigraineButtonProps) {
