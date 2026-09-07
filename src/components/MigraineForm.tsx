@@ -1,9 +1,9 @@
 import { FormEvent, useState } from "react"
 import type { MigraineSubmitProps } from "./Modal"
 
-export const MigraineForm = ({ onClose, onSubmit }: MigraineSubmitProps) => {
-  const [date, setDate] = useState("")
-  const [cycleDay, setCycleDay] = useState("")
+export const MigraineForm = ({ onClose, onSubmit, initialData }: MigraineSubmitProps) => {
+  const [date, setDate] = useState(initialData?.date ?? "")
+  const [cycleDay, setCycleDay] = useState( initialData?.cycleDay === undefined ? "" : String(initialData.cycleDay))
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()

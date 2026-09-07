@@ -4,13 +4,13 @@ import { MainPage } from './pages/MainPage'
 import { useMigraines } from './hooks/useMigraines'
 
 function App() {
-  const {migraines, addMigraine, deleteMigraine} = useMigraines()
+  const {migraines, addMigraine, deleteMigraine, editMigraine} = useMigraines()
 
   return (
     <>
       <div className="flex min-h-svh flex-col">
         <Navigation onAddMigraine={addMigraine} />
-        <MainPage migraines={migraines} onDeleteMigraine={deleteMigraine} />
+        <MainPage migraines={migraines} onDeleteMigraine={deleteMigraine} onEditMigraine={editMigraine} />
       </div>
     </>
   )

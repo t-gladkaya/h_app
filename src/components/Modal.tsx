@@ -6,9 +6,10 @@ import type { Migraine } from "../types/migraine"
 export type MigraineSubmitProps = {
   onClose: () => void;
   onSubmit: (data: Migraine) => void;
+  initialData?: Migraine;
 }
 
-export const Modal = ({ onClose, onSubmit }: MigraineSubmitProps) => {
+export const Modal = ({ onClose, onSubmit, initialData }: MigraineSubmitProps) => {
   return createPortal(
     <motion.div
       className="fixed inset-0 bg-black/40 flex justify-center items-center z-50"
@@ -25,7 +26,7 @@ export const Modal = ({ onClose, onSubmit }: MigraineSubmitProps) => {
         transition={{ type: "spring", stiffness: 260, damping: 20 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <MigraineForm onClose={onClose} onSubmit={onSubmit} />
+        <MigraineForm onClose={onClose} onSubmit={onSubmit} initialData={initialData} />
       </motion.div>
     </motion.div>,
     document.body

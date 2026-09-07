@@ -25,9 +25,21 @@ export function useMigraines() {
     })
   }
 
+  const editMigraine = (indexToEdit: number, updatedData: Migraine) => {
+    setMigraines((currentMigraines) => {
+      const updatedMigraines = currentMigraines.map((migraine, index) =>
+        index === indexToEdit ? updatedData : migraine
+      )
+
+      saveMigraines(updatedMigraines)
+      return updatedMigraines
+    })
+  }
+
   return {
     migraines,
     addMigraine,
-    deleteMigraine
+    deleteMigraine,
+    editMigraine,
   }
 }
