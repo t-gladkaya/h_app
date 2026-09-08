@@ -1,5 +1,6 @@
 import { AddMigraineButton } from "./AddMigraineButton"
 import type { Migraine } from "../types/migraine"
+import { SignOutButton } from "./SignOutButton"
 
 type NavigationProps = {
   onAddMigraine: (data: Migraine) => void
@@ -19,6 +20,7 @@ export default function Navigation({ onAddMigraine }: NavigationProps) {
           <p className="rounded-md px-4 py-2 transition-colors">
             Statistics
           </p>
+          <SignOutButton />
         </li>
       </ul>
     </header>
