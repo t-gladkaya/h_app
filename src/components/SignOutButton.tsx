@@ -1,9 +1,11 @@
 import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
 export const SignOutButton = () => {
   const navigate = useNavigate();
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
     navigate("/signin")
   }
 
