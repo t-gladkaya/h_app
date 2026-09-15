@@ -1,11 +1,11 @@
 import { createPortal } from "react-dom"
 import { motion } from "framer-motion"
 import { MigraineForm } from "./MigraineForm"
-import type { Migraine } from "../types/migraine"
+import type { Migraine, MigraineInput } from "../types/migraine"
 
 export type MigraineSubmitProps = {
   onClose: () => void;
-  onSubmit: (data: Migraine) => void;
+  onSubmit: (data: MigraineInput) => void;
   initialData?: Migraine;
 }
 

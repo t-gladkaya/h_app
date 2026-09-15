@@ -1,5 +1,5 @@
 import { useState } from "react"
-import type { Migraine } from "../types/migraine"
+import type { Migraine, MigraineInput } from "../types/migraine"
 import { MigraineCard } from "./MigraineCard"
 import { AnimatePresence } from "framer-motion"
 import { DeleteConfirmModal } from "./DeleteConfirmModal"
@@ -7,8 +7,8 @@ import { Modal } from "./Modal"
 
 type MigraineListProps = {
   migraines: Migraine[]
-  onDeleteMigraine: (index: number) => void
-  onEditMigraine: (index: number, updatedData: Migraine) => void
+  onDeleteMigraine: (id: string) => void
+  onEditMigraine: (id: string, updatedData: MigraineInput) => void
 }
 
 type SortOrder = "asc" | "desc"
@@ -18,36 +18,33 @@ export function MigraineList({
   onDeleteMigraine,
   onEditMigraine,
 }: MigraineListProps) {
-  const [indexToDelete, setIndexToDelete] = useState<number | null>(null)
-  const [indexToEdit, setIndexToEdit] = useState<number | null>(null)
+  const [idToDelete, setIdToDelete] = useState<string | null>(null)
+  const [idToEdit, setIdToEdit] = useState<string | null>(null)
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc")
 
-  const migraineToEdit = indexToEdit === null ? null : migraines[indexToEdit]
+  const migraineToEdit =
+    idToEdit === null
+    ? null
+    : migraines.find((migraine) => migraine.id === idToEdit) ?? null;
 
-  const sortedMigraines = migraines
-    .map((migraine, index) => ({ migraine, originalIndex: index }))
-    .sort((a, b) => {
-      const firstDate = new Date(a.migraine.date).getTime()
-      const secondDate = new Date(b.migraine.date).getTime()
+  const sortedMigraines = [...migraines].sort((a, b) => {
+    const firstDate = new Date(a.date).getTime()
+    const secondDate = new Date(b.date).getTime()
 
-      return sortOrder === "asc"
-        ? firstDate - secondDate
-        : secondDate - firstDate
-    })
-
-  const handleRequestDelete = (index: number) => {
-    setIndexToDelete(index)
-  }
+    return sortOrder === "asc"
+      ? firstDate - secondDate
+      : secondDate - firstDate
+  })
 
   const handleCancelDelete = () => {
-    setIndexToDelete(null)
+    setIdToDelete(null)
   }
 
   const handleConfirmDelete = () => {
-    if (indexToDelete === null) return
+    if (idToDelete === null) return
 
-    onDeleteMigraine(indexToDelete)
-    setIndexToDelete(null)
+    onDeleteMigraine(idToDelete)
+    setIdToDelete(null)
   }
 
   return (
@@ -71,18 +68,18 @@ export function MigraineList({
         </div>
       </section>
       <section className="flex flex-col items-center gap-4 overflow-auto p-4">
-        {sortedMigraines.map(({ migraine, originalIndex }) => (
+        {sortedMigraines.map((migraine) => (
           <MigraineCard
-            key={`${migraine.date}-${migraine.cycleDay}-${originalIndex}`}
+            key={migraine.id}
             migraine={migraine}
-            onDelete={() => handleRequestDelete(originalIndex)}
-            onEdit={() => setIndexToEdit(originalIndex)}
+            onDelete={() => setIdToDelete(migraine.id)}
+            onEdit={() => setIdToEdit(migraine.id)}
           />
         ))}
       </section>
 
       <AnimatePresence>
-        {indexToDelete !== null && (
+        {idToDelete !== null && (
           <DeleteConfirmModal
             onCancel={handleCancelDelete}
             onConfirm={handleConfirmDelete}
@@ -91,13 +88,13 @@ export function MigraineList({
       </AnimatePresence>
 
       <AnimatePresence>
-        {migraineToEdit && indexToEdit !==null && (
+        {migraineToEdit && idToEdit !==null && (
           <Modal
             initialData={migraineToEdit}
-            onClose={() => setIndexToEdit(null)}
+            onClose={() => setIdToEdit(null)}
             onSubmit={(updatedData) => {
-              onEditMigraine(indexToEdit, updatedData)
-              setIndexToEdit(null)
+              onEditMigraine(idToEdit, updatedData)
+              setIdToEdit(null)
             }}
           />
         )}

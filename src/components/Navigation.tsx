@@ -1,9 +1,9 @@
 import { AddMigraineButton } from "./AddMigraineButton"
-import type { Migraine } from "../types/migraine"
+import type { MigraineInput } from "../types/migraine"
 import { SignOutButton } from "./SignOutButton"
 
 type NavigationProps = {
-  onAddMigraine: (data: Migraine) => void
+  onAddMigraine: (data: MigraineInput) => void
 }
 
 export default function Navigation({ onAddMigraine }: NavigationProps) {

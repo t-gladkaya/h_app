@@ -1,11 +1,11 @@
-import type { Migraine } from "../types/migraine"
+import type { Migraine, MigraineInput } from "../types/migraine"
 import { MigraineList } from "../components/MigraineList"
 import { StatisticsPanel } from "../components/StatisticsPanel"
 
 export type MainPageProps = {
   migraines: Migraine[]
-  onDeleteMigraine: (index: number) => void
-  onEditMigraine: (index: number, updatedData: Migraine) => void
+  onDeleteMigraine: (id: string) => void
+  onEditMigraine: (id: string, updatedData: MigraineInput) => void
 }
 
 export const MainPage = ({ migraines, onDeleteMigraine, onEditMigraine }: MainPageProps) => {
